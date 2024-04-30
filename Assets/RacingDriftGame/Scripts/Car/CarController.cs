@@ -1,3 +1,4 @@
+using RacingDriftGame.Scripts.UI;
 using UnityEngine;
 
 namespace RacingDriftGame.Scripts.Car
@@ -9,6 +10,7 @@ namespace RacingDriftGame.Scripts.Car
         [SerializeField] private WheelParticles wheelParticles;
         [SerializeField] private AnimationCurve steeringCurve;
         [SerializeField] private GameObject smokePrefab;
+        [SerializeField] private HUDButton gasButton, brakeButton, turnLeftButton, turnRightButton;
         private Rigidbody playerBody;
         private float speed;
         private const float motorPower = 1000f;
@@ -17,9 +19,10 @@ namespace RacingDriftGame.Scripts.Car
         private float slipAngle;
         private float gasInput;
         private float steeringInput;
-        private float maxWheelRotAngle = 40f;
+        private float maxWheelRotAngle = 90f;
         private float driftAngle = 120f;
         private float slipAllowance = 0.5f;
+        private float dampenRateCoefficient = 0.05f;
 
 
         private void Start()
@@ -41,8 +44,15 @@ namespace RacingDriftGame.Scripts.Car
 
         private void CheckInput()
         {
-            gasInput = Input.GetAxis("Vertical");
-            steeringInput = Input.GetAxis("Horizontal");
+            if (PlatformChecker.IsAndroidPlatform)
+            {
+                InputFromAndroid();
+            }
+            else
+            {
+                InputFromPC();
+            }
+
             slipAngle = Vector3.Angle(transform.forward, playerBody.velocity);
             if (slipAngle < driftAngle)
             {
@@ -58,6 +68,72 @@ namespace RacingDriftGame.Scripts.Car
             }
         }
 
+        private void InputFromAndroid()
+        {
+            if (gasButton.IsPressed)
+            {
+                gasInput += gasButton.dampenPress;
+            }
+            else
+            {
+                gasInput -= dampenRateCoefficient;
+                gasInput = Mathf.Clamp01(gasInput);
+            }
+
+            if (brakeButton.IsPressed)
+            {
+                gasInput -= brakeButton.dampenPress;
+            }
+
+            if (turnLeftButton.IsPressed)
+            {
+                steeringInput -= turnLeftButton.dampenPress;
+            }
+            else
+            {
+                SteeringFade();
+            }
+
+            if (turnRightButton.IsPressed)
+            {
+                steeringInput += turnRightButton.dampenPress;
+            }
+            else
+            {
+                SteeringFade();
+            }
+
+            gasInput = Mathf.Clamp(gasInput, -1, 1);
+            steeringInput = Mathf.Clamp(steeringInput, -1, 1);
+        }
+
+        private void SteeringFade()
+        {
+            if (steeringInput < 0)
+            {
+                steeringInput += dampenRateCoefficient;
+                if (steeringInput > 0)
+                {
+                    steeringInput = 0;
+                }
+            }
+
+            if (steeringInput > 0)
+            {
+                steeringInput -= dampenRateCoefficient;
+                if (steeringInput < 0)
+                {
+                    steeringInput = 0;
+                }
+            }
+        }
+
+        private void InputFromPC()
+        {
+            gasInput = Input.GetAxis("Vertical");
+            steeringInput = Input.GetAxis("Horizontal");
+        }
+
         private void InstAllSmokeTrailParticles()
         {
             wheelParticles.FRWheelFx = InstantiateSmokeFXOnWheel(wheelColliders.FRWheel);
@@ -68,15 +144,14 @@ namespace RacingDriftGame.Scripts.Car
 
         private ParticleSystem InstantiateSmokeFXOnWheel(WheelCollider wheelCollider)
         {
-            var wheelFX = Instantiate(smokePrefab, 
-                                            wheelCollider.transform.position - Vector3.up * wheelCollider.radius, 
-                                            Quaternion.identity, 
-                                            wheelCollider.transform)
-                                            .GetComponent<ParticleSystem>();
+            var wheelFX = Instantiate(smokePrefab,
+                    wheelCollider.transform.position - Vector3.up * wheelCollider.radius,
+                    Quaternion.identity,
+                    wheelCollider.transform)
+                .GetComponent<ParticleSystem>();
             return wheelFX;
         }
-        
-        
+
 
         private void CheckAllSmokeWheelParticles()
         {
