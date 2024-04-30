@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace RacingDriftGame.Scripts.Car
@@ -18,12 +17,15 @@ namespace RacingDriftGame.Scripts.Car
         private float slipAngle;
         private float gasInput;
         private float steeringInput;
+        private float maxWheelRotAngle = 40f;
+        private float driftAngle = 120f;
+        private float slipAllowance = 0.5f;
 
 
         private void Start()
         {
             playerBody = GetComponent<Rigidbody>();
-            InstantiateSmokeParticles();
+            InstAllSmokeTrailParticles();
         }
 
         private void Update()
@@ -33,7 +35,7 @@ namespace RacingDriftGame.Scripts.Car
             ApplyMotor();
             ApplySteering();
             ApplyBrake();
-            CheckSmokeParticles();
+            CheckAllSmokeWheelParticles();
             UpdateWheelsPosAndRot();
         }
 
@@ -42,7 +44,7 @@ namespace RacingDriftGame.Scripts.Car
             gasInput = Input.GetAxis("Vertical");
             steeringInput = Input.GetAxis("Horizontal");
             slipAngle = Vector3.Angle(transform.forward, playerBody.velocity);
-            if (slipAngle < 120f)
+            if (slipAngle < driftAngle)
             {
                 if (gasInput < 0)
                 {
@@ -56,20 +58,27 @@ namespace RacingDriftGame.Scripts.Car
             }
         }
 
-        private void InstantiateSmokeParticles()
+        private void InstAllSmokeTrailParticles()
         {
-            // var particles = new ParticleSystem[4];
-            wheelParticles.FRWheelFx = Instantiate(smokePrefab, wheelColliders.FRWheel.transform.position - Vector3.up * wheelColliders.FRWheel.radius, Quaternion.identity, wheelColliders.FRWheel.transform)
-                .GetComponent<ParticleSystem>();
-            wheelParticles.FLWheelFx = Instantiate(smokePrefab, wheelColliders.FLWheel.transform.position - Vector3.up * wheelColliders.FLWheel.radius, Quaternion.identity, wheelColliders.FLWheel.transform)
-                .GetComponent<ParticleSystem>();
-            wheelParticles.RRWheelFx = Instantiate(smokePrefab, wheelColliders.RRWheel.transform.position - Vector3.up * wheelColliders.RRWheel.radius, Quaternion.identity, wheelColliders.RRWheel.transform)
-                .GetComponent<ParticleSystem>();
-            wheelParticles.RLWheelFx = Instantiate(smokePrefab, wheelColliders.RLWheel.transform.position - Vector3.up * wheelColliders.RLWheel.radius, Quaternion.identity, wheelColliders.RLWheel.transform)
-                .GetComponent<ParticleSystem>();
+            wheelParticles.FRWheelFx = InstantiateSmokeFXOnWheel(wheelColliders.FRWheel);
+            wheelParticles.FLWheelFx = InstantiateSmokeFXOnWheel(wheelColliders.FLWheel);
+            wheelParticles.RRWheelFx = InstantiateSmokeFXOnWheel(wheelColliders.RRWheel);
+            wheelParticles.RLWheelFx = InstantiateSmokeFXOnWheel(wheelColliders.RLWheel);
         }
 
-        private void CheckSmokeParticles()
+        private ParticleSystem InstantiateSmokeFXOnWheel(WheelCollider wheelCollider)
+        {
+            var wheelFX = Instantiate(smokePrefab, 
+                                            wheelCollider.transform.position - Vector3.up * wheelCollider.radius, 
+                                            Quaternion.identity, 
+                                            wheelCollider.transform)
+                                            .GetComponent<ParticleSystem>();
+            return wheelFX;
+        }
+        
+        
+
+        private void CheckAllSmokeWheelParticles()
         {
             WheelHit[] wheelHits = new WheelHit[4];
             wheelColliders.FRWheel.GetGroundHit(out wheelHits[0]);
@@ -77,42 +86,21 @@ namespace RacingDriftGame.Scripts.Car
             wheelColliders.RRWheel.GetGroundHit(out wheelHits[2]);
             wheelColliders.RLWheel.GetGroundHit(out wheelHits[3]);
 
-            float slipAllowance = 0.5f;
-            
-            if (Mathf.Abs(wheelHits[0].sidewaysSlip) + Mathf.Abs(wheelHits[0].forwardSlip) > slipAllowance)
+            CheckSmokeFX(wheelHits[0], wheelParticles.FRWheelFx);
+            CheckSmokeFX(wheelHits[1], wheelParticles.FLWheelFx);
+            CheckSmokeFX(wheelHits[2], wheelParticles.RRWheelFx);
+            CheckSmokeFX(wheelHits[3], wheelParticles.RLWheelFx);
+        }
+
+        private void CheckSmokeFX(WheelHit wheelHit, ParticleSystem smokeFx)
+        {
+            if (Mathf.Abs(wheelHit.sidewaysSlip) + Mathf.Abs(wheelHit.forwardSlip) > slipAllowance)
             {
-                 wheelParticles.FRWheelFx.Play();
+                smokeFx.Play();
             }
             else
             {
-                wheelParticles.FRWheelFx.Stop();
-            }
-            
-            if (Mathf.Abs(wheelHits[1].sidewaysSlip) + Mathf.Abs(wheelHits[1].forwardSlip) > slipAllowance)
-            {
-                wheelParticles.FLWheelFx.Play();
-            }
-            else
-            {
-                wheelParticles.FLWheelFx.Stop();
-            }
-            
-            if (Mathf.Abs(wheelHits[2].sidewaysSlip) + Mathf.Abs(wheelHits[2].forwardSlip) > slipAllowance)
-            {
-                wheelParticles.RRWheelFx.Play();
-            }
-            else
-            {
-                wheelParticles.RRWheelFx.Stop();
-            }
-            
-            if (Mathf.Abs(wheelHits[3].sidewaysSlip) + Mathf.Abs(wheelHits[3].forwardSlip) > slipAllowance)
-            {
-                wheelParticles.RLWheelFx.Play();
-            }
-            else
-            {
-                wheelParticles.RLWheelFx.Stop();
+                smokeFx.Stop();
             }
         }
 
@@ -135,7 +123,7 @@ namespace RacingDriftGame.Scripts.Car
             var steeringAngle = steeringInput * steeringCurve.Evaluate(speed);
             steeringAngle +=
                 Vector3.SignedAngle(transform.forward, playerBody.velocity + transform.forward, Vector3.up);
-            steeringAngle = Mathf.Clamp(steeringAngle, -40f, 40f);
+            steeringAngle = Mathf.Clamp(steeringAngle, -maxWheelRotAngle, maxWheelRotAngle);
             wheelColliders.FRWheel.steerAngle = steeringAngle;
             wheelColliders.FLWheel.steerAngle = steeringAngle;
         }

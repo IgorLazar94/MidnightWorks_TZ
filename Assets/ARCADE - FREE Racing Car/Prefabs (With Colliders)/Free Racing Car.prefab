@@ -282,12 +282,12 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 1
+    m_Stiffness: 2
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
+    m_ExtremumValue: 0.25
+    m_AsymptoteSlip: 0.1
+    m_AsymptoteValue: 0.25
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!1 &3018720586628133803
@@ -460,7 +460,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2792218741957914664}
   - component: {fileID: 7495443279060062592}
-  - component: {fileID: 2566511489343840171}
+  - component: {fileID: 1961960692}
   m_Layer: 0
   m_Name: Free Racing Car
   m_TagString: Untagged
@@ -502,19 +502,59 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &2566511489343840171
-BoxCollider:
+--- !u!114 &1961960692
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3311311803080157842}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43ec795afde5b0841acd0e3cb365b6b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheelColliders:
+    FRWheel: {fileID: 4795950753765878369}
+    FLWheel: {fileID: 2716459193614891142}
+    RRWheel: {fileID: 1057494946909100755}
+    RLWheel: {fileID: 3145262460232535540}
+  wheelMeshes:
+    FRWheel: {fileID: 8083670537106556971}
+    FLWheel: {fileID: 4298496386007230615}
+    RRWheel: {fileID: 7348393411021767341}
+    RLWheel: {fileID: 1590566988275871281}
+  wheelParticles:
+    FRWheelFx: {fileID: 0}
+    FLWheelFx: {fileID: 0}
+    RRWheelFx: {fileID: 0}
+    RLWheelFx: {fileID: 0}
+  steeringCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.6798744
+      value: 65.15198
+      inSlope: -0.19657901
+      outSlope: -0.19657901
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.17916672
+    - serializedVersion: 3
+      time: 80.82862
+      value: 15.370359
+      inSlope: 0.09327459
+      outSlope: 0.09327459
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.20416665
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  smokePrefab: {fileID: 336881577860626725, guid: 6002eef8787e02a4bbd5b062dc262d5a,
+    type: 3}
 --- !u!1 &3962000127133956386
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,12 +609,12 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 1
+    m_Stiffness: 2
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
+    m_ExtremumValue: 0.25
+    m_AsymptoteSlip: 0.1
+    m_AsymptoteValue: 0.25
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!1 &4163942240364048118
