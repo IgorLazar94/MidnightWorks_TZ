@@ -11,6 +11,7 @@ namespace RacingDriftGame.Scripts.Car
         [SerializeField] private WheelParticles wheelParticles;
         [SerializeField] private AnimationCurve steeringCurve;
         [SerializeField] private GameObject smokePrefab;
+        [SerializeField] private Transform newCenterOfMassTransform;
         [SerializeField] private HUDButton gasButton, brakeButton, turnLeftButton, turnRightButton;
         private Rigidbody playerBody;
         private float speed;
@@ -29,6 +30,7 @@ namespace RacingDriftGame.Scripts.Car
         private void Start()
         {
             playerBody = GetComponent<Rigidbody>();
+            SetNewCenterOfMass();
             InstAllSmokeTrailParticles();
         }
 
@@ -45,6 +47,11 @@ namespace RacingDriftGame.Scripts.Car
             ApplyBrake();
             CheckAllSmokeWheelParticles();
             UpdateWheelsPosAndRot();
+        }
+
+        private void SetNewCenterOfMass()
+        {
+            playerBody.centerOfMass = newCenterOfMassTransform.localPosition;
         }
 
         private void CheckInput()
