@@ -1,5 +1,6 @@
 using System;
 using RacingDriftGame.Scripts.UI;
+using RacingDriftGame.Scripts.UI.GameplayUI;
 using UnityEngine;
 
 namespace RacingDriftGame.Scripts.Car

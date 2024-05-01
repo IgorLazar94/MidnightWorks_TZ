@@ -4,7 +4,19 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/GarageMenuScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/NarrowFieldRoad.unity
+    guid: c850ee8c3b14cc8459e7e186857cf567
+  - enabled: 1
+    path: Assets/Scenes/NarrowForestRoad.unity
+    guid: bfc17a9c92c28c34eb65b29fe74e6612
+  - enabled: 1
+    path: Assets/Scenes/WideForestRoad.unity
+    guid: 714d0867c6a75fc4a96df9a8352b93e3
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
       guid: 35aa4c00b7e0cfe4aa958784e99cf4ce, type: 2}

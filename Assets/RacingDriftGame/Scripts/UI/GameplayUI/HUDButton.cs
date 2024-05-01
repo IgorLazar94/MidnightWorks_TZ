@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace RacingDriftGame.Scripts.UI
+namespace RacingDriftGame.Scripts.UI.GameplayUI
 {
     public class HUDButton : MonoBehaviour
     {
