@@ -555,6 +555,10 @@ MonoBehaviour:
     m_RotationOrder: 4
   smokePrefab: {fileID: 336881577860626725, guid: 6002eef8787e02a4bbd5b062dc262d5a,
     type: 3}
+  gasButton: {fileID: 0}
+  brakeButton: {fileID: 0}
+  turnLeftButton: {fileID: 0}
+  turnRightButton: {fileID: 0}
 --- !u!1 &3962000127133956386
 GameObject:
   m_ObjectHideFlags: 0

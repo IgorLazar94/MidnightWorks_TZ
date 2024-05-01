@@ -1,3 +1,4 @@
+using System;
 using RacingDriftGame.Scripts.UI;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace RacingDriftGame.Scripts.Car
         [SerializeField] private HUDButton gasButton, brakeButton, turnLeftButton, turnRightButton;
         private Rigidbody playerBody;
         private float speed;
-        private const float motorPower = 1000f;
+        private const float motorPower = 1500f;
         private float brakePower = 500000f;
         private float brakeInput;
         private float slipAngle;
@@ -33,8 +34,12 @@ namespace RacingDriftGame.Scripts.Car
 
         private void Update()
         {
-            speed = playerBody.velocity.magnitude;
             CheckInput();
+        }
+
+        private void FixedUpdate()
+        {
+            speed = playerBody.velocity.magnitude;
             ApplyMotor();
             ApplySteering();
             ApplyBrake();
