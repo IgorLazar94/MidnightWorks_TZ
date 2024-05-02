@@ -1,8 +1,12 @@
+using System;
+using RacingDriftGame.Scripts.DataPersistenceSystem;
+using RacingDriftGame.Scripts.DataPersistenceSystem.Data;
+using RacingDriftGame.Scripts.UI.StartMenuUI;
 using UnityEngine;
 
 namespace RacingDriftGame.Scripts
 {
-    public class MoneyManager : MonoBehaviour
+    public class MoneyManager : MonoBehaviour, IDataPersistence
     {
         
         public static MoneyManager Instance
@@ -32,10 +36,10 @@ namespace RacingDriftGame.Scripts
             get => playerDollars;
             set
             {
-                if (value >= 0)
-                {
-                    playerDollars = value;
-                }
+                if (value < 0) return;
+                playerDollars = value;
+                MoneyHeader.OnUpdateMoneyText?.Invoke(playerDollars, playerGold);
+                DataPersistenceManager.Instance.SaveGame();
             }
         }
         public int PlayerGold
@@ -43,10 +47,10 @@ namespace RacingDriftGame.Scripts
             get => playerGold;
             set
             {
-                if (value >= 0)
-                {
-                    playerGold = value;
-                }
+                if (value < 0) return;
+                playerGold = value;
+                MoneyHeader.OnUpdateMoneyText?.Invoke(playerDollars, playerGold);
+                DataPersistenceManager.Instance.SaveGame();
             }
         }
 
@@ -57,6 +61,11 @@ namespace RacingDriftGame.Scripts
         private void Awake()
         {
             MakeSingleton();
+        }
+
+        private void Start()
+        {
+            MoneyHeader.OnUpdateMoneyText?.Invoke(playerDollars, playerGold);
         }
 
         private void MakeSingleton()
@@ -70,6 +79,18 @@ namespace RacingDriftGame.Scripts
             {
                 Destroy(this.gameObject);
             }
+        }
+
+        public void LoadData(GameData gameData)
+        {
+            playerDollars = gameData.dollars;
+            playerGold = gameData.coins;
+        }
+
+        public void SaveData(ref GameData gameData)
+        {
+            gameData.dollars = playerDollars;
+            gameData.coins = playerGold;
         }
     }
 }

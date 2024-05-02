@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Threading.Tasks;
 using TMPro;
@@ -79,7 +80,7 @@ namespace RacingDriftGame.Scripts.Car
             driftAngleText.text = driftAngle.ToString("###,##0") + "°";
         }
 
-        async private void StartDrift()
+        private async void StartDrift()
         {
             if (!isDrifting)
             {
@@ -114,6 +115,12 @@ namespace RacingDriftGame.Scripts.Car
             yield return new WaitForSeconds(0.5f);
             currentScore = 0;
             driftingPanel.SetActive(false);
+        }
+
+        public void CalculateTotalScoreInMoney()
+        { 
+            var addMoney = Mathf.RoundToInt(totalScore / 100);
+            MoneyManager.Instance.PlayerDollars += addMoney;
         }
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections;
+using RacingDriftGame.Scripts.Car;
 using TMPro;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ namespace RacingDriftGame.Scripts
 {
     public class LevelTimerController : MonoBehaviour
     {
+        [SerializeField] private ScoresDriftManager scoresDriftManager;
         [SerializeField] private TextMeshProUGUI remainingTimeText;
         private float remainingTime = 120f;
         
@@ -37,6 +39,7 @@ namespace RacingDriftGame.Scripts
                 remainingTime -= 1f;
             }
             remainingTimeText.text ="00:00";
+            scoresDriftManager.CalculateTotalScoreInMoney();
         }
         
         private void ChangeRemainingTimeTextColor(Color newColor)

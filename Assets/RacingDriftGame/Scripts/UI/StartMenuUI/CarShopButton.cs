@@ -88,7 +88,7 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
                 case TypeOfCarButton.Red:
                     if (isBoughtRedCar)
                     {
-                        carConstructor.SetNewTexture(textureCollection.RedTexture);
+                        carConstructor.SetNewTexture(textureCollection.RedTexture, typeOfCarButton);
                     }
                     else
                     {
@@ -97,7 +97,7 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
                             MoneyManager.Instance.PlayerDollars -= price;
                             isBoughtRedCar = true;
                             StartCoroutine(SwitchWrapperAndPriceWithDelay(isBoughtRedCar, 0f));
-                            carConstructor.SetNewTexture(textureCollection.RedTexture);
+                            carConstructor.SetNewTexture(textureCollection.RedTexture, typeOfCarButton);
                             DataPersistenceManager.Instance.SaveGame();
                         }
                         else if (typeOfPayment == TypeOfPayment.Gold && MoneyManager.Instance.PlayerGold >= price)
@@ -105,7 +105,7 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
                             MoneyManager.Instance.PlayerGold -= price;
                             isBoughtRedCar = true;
                             StartCoroutine(SwitchWrapperAndPriceWithDelay(isBoughtRedCar, 0f));
-                            carConstructor.SetNewTexture(textureCollection.RedTexture);
+                            carConstructor.SetNewTexture(textureCollection.RedTexture, typeOfCarButton);
                             DataPersistenceManager.Instance.SaveGame();
                         }
                     }
@@ -113,7 +113,7 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
                 case TypeOfCarButton.Blue:
                     if (isBoughtBlueCar)
                     {
-                        carConstructor.SetNewTexture(textureCollection.BlueTexture);
+                        carConstructor.SetNewTexture(textureCollection.BlueTexture, typeOfCarButton);
                     }
                     else
                     {
@@ -122,7 +122,7 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
                             MoneyManager.Instance.PlayerDollars -= price;
                             isBoughtBlueCar = true;
                             StartCoroutine(SwitchWrapperAndPriceWithDelay(isBoughtBlueCar, 0f));
-                            carConstructor.SetNewTexture(textureCollection.BlueTexture);
+                            carConstructor.SetNewTexture(textureCollection.BlueTexture, typeOfCarButton);
                             DataPersistenceManager.Instance.SaveGame();
                         }
                         else if (typeOfPayment == TypeOfPayment.Gold && MoneyManager.Instance.PlayerGold >= price)
@@ -130,7 +130,7 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
                             MoneyManager.Instance.PlayerGold -= price;
                             isBoughtBlueCar = true;
                             StartCoroutine(SwitchWrapperAndPriceWithDelay(isBoughtBlueCar, 0f));
-                            carConstructor.SetNewTexture(textureCollection.BlueTexture);
+                            carConstructor.SetNewTexture(textureCollection.BlueTexture, typeOfCarButton);
                             DataPersistenceManager.Instance.SaveGame();
                         }
                     }
@@ -138,7 +138,7 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
                 case TypeOfCarButton.Yellow:
                     if (isBoughtYellowCar)
                     {
-                        carConstructor.SetNewTexture(textureCollection.YellowTexture);
+                        carConstructor.SetNewTexture(textureCollection.YellowTexture, typeOfCarButton);
                     }
                     else
                     {
@@ -147,7 +147,7 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
                             MoneyManager.Instance.PlayerDollars -= price;
                             isBoughtYellowCar = true;
                             StartCoroutine(SwitchWrapperAndPriceWithDelay(isBoughtYellowCar, 0f));
-                            carConstructor.SetNewTexture(textureCollection.YellowTexture);
+                            carConstructor.SetNewTexture(textureCollection.YellowTexture, typeOfCarButton);
                             DataPersistenceManager.Instance.SaveGame();
                         }
                         else if (typeOfPayment == TypeOfPayment.Gold && MoneyManager.Instance.PlayerGold >= price)
@@ -155,7 +155,7 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
                             MoneyManager.Instance.PlayerGold -= price;
                             isBoughtYellowCar = true;
                             StartCoroutine(SwitchWrapperAndPriceWithDelay(isBoughtYellowCar, 0f));
-                            carConstructor.SetNewTexture(textureCollection.YellowTexture);
+                            carConstructor.SetNewTexture(textureCollection.YellowTexture, typeOfCarButton);
                             DataPersistenceManager.Instance.SaveGame();
                         }
                     }
@@ -163,7 +163,7 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
                 case TypeOfCarButton.Grey:
                     if (isBoughtGreyCar)
                     {
-                        carConstructor.SetNewTexture(textureCollection.GreyTexture);
+                        carConstructor.SetNewTexture(textureCollection.GreyTexture, typeOfCarButton);
                     }
                     else
                     {
@@ -172,7 +172,7 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
                             MoneyManager.Instance.PlayerDollars -= price;
                             isBoughtGreyCar = true;
                             StartCoroutine(SwitchWrapperAndPriceWithDelay(isBoughtGreyCar, 0f));
-                            carConstructor.SetNewTexture(textureCollection.GreyTexture);
+                            carConstructor.SetNewTexture(textureCollection.GreyTexture, typeOfCarButton);
                             DataPersistenceManager.Instance.SaveGame();
                         }
                         else if (typeOfPayment == TypeOfPayment.Gold && MoneyManager.Instance.PlayerGold >= price)
@@ -180,7 +180,7 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
                             MoneyManager.Instance.PlayerGold -= price;
                             isBoughtGreyCar = true;
                             StartCoroutine(SwitchWrapperAndPriceWithDelay(isBoughtGreyCar, 0f));
-                            carConstructor.SetNewTexture(textureCollection.GreyTexture);
+                            carConstructor.SetNewTexture(textureCollection.GreyTexture, typeOfCarButton);
                             DataPersistenceManager.Instance.SaveGame();
                         }
                     }
@@ -188,7 +188,7 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
                 case TypeOfCarButton.Violet:
                     if (isBoughtVioletCar)
                     {
-                        carConstructor.SetNewTexture(textureCollection.VioletTexture);
+                        carConstructor.SetNewTexture(textureCollection.VioletTexture, typeOfCarButton);
                     }
                     else
                     {
@@ -197,7 +197,7 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
                             MoneyManager.Instance.PlayerDollars -= price;
                             isBoughtVioletCar = true;
                             StartCoroutine(SwitchWrapperAndPriceWithDelay(isBoughtVioletCar, 0f));
-                            carConstructor.SetNewTexture(textureCollection.VioletTexture);
+                            carConstructor.SetNewTexture(textureCollection.VioletTexture, typeOfCarButton);
                             DataPersistenceManager.Instance.SaveGame();
                         }
                         else if (typeOfPayment == TypeOfPayment.Gold && MoneyManager.Instance.PlayerGold >= price)
@@ -205,7 +205,7 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
                             MoneyManager.Instance.PlayerGold -= price;
                             isBoughtVioletCar = true;
                             StartCoroutine(SwitchWrapperAndPriceWithDelay(isBoughtVioletCar, 0f));
-                            carConstructor.SetNewTexture(textureCollection.VioletTexture);
+                            carConstructor.SetNewTexture(textureCollection.VioletTexture, typeOfCarButton);
                             DataPersistenceManager.Instance.SaveGame();
                         }
                     }
