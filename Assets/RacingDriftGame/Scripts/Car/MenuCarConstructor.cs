@@ -6,6 +6,7 @@ namespace RacingDriftGame.Scripts.Car
 {
     public class MenuCarConstructor : MonoBehaviour, IDragHandler
     {
+        [SerializeField] private MeshRenderer carMesh;
         private float rotationDuration = 30f;
         private int rotationDirection = -1;
         private Tween rotationTween;
@@ -43,6 +44,11 @@ namespace RacingDriftGame.Scripts.Car
                 rotationTween.Kill();
                 RotateCar();
             }
+        }
+
+        public void SetNewTexture(Texture newTexture)
+        {
+            carMesh.materials[0].mainTexture = newTexture;
         }
     }
 }

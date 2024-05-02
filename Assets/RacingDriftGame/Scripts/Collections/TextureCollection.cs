@@ -2,8 +2,12 @@ using UnityEngine;
 
 namespace RacingDriftGame.Scripts.Collections
 {
-    public class TextureCollection
+    public class TextureCollection : MonoBehaviour
     {
-        public Texture yellowTexture;
+        public Texture YellowTexture;
+        public Texture BlueTexture;
+        public Texture RedTexture;
+        public Texture GreyTexture;
+        public Texture VioletTexture;
     }
 }
