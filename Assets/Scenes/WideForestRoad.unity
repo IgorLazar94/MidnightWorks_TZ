@@ -8,8 +8,9 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: 714d0867c6a75fc4a96df9a8352b93e3
+  m_OcclusionCullingData: {fileID: 36300000, guid: 2af3dbd27e8bcec4f9e605b656723a13,
+    type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -38,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.5241321, g: 0.56178737, b: 0.47702885, a: 1}
+  m_IndirectSpecularColor: {r: 0.5231719, g: 0.56171906, b: 0.47704735, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +98,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: bb81a994e2f14a4449baf2f5b77be697,
+    type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -142,6 +144,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2143284620}
     m_Modifications:
+    - target: {fileID: 7377350430163409452, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7377350430701062508, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
         type: 3}
       propertyPath: m_RootOrder
@@ -201,6 +208,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RoadBlocker (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377350430701062510, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377350430819462853, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a81b8cfcea688841a3f8414e65ad5e0, type: 3}
@@ -315,6 +332,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2143284620}
     m_Modifications:
+    - target: {fileID: 7377350430163409452, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7377350430701062508, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
         type: 3}
       propertyPath: m_RootOrder
@@ -375,6 +397,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadBlocker (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7377350430701062510, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377350430819462853, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a81b8cfcea688841a3f8414e65ad5e0, type: 3}
 --- !u!4 &135284209 stripped
@@ -402,6 +434,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2143284620}
     m_Modifications:
+    - target: {fileID: 7377350430163409452, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7377350430701062508, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
         type: 3}
       propertyPath: m_RootOrder
@@ -462,6 +499,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadBlocker
       objectReference: {fileID: 0}
+    - target: {fileID: 7377350430701062510, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377350430819462853, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a81b8cfcea688841a3f8414e65ad5e0, type: 3}
 --- !u!4 &153631753 stripped
@@ -481,6 +528,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WideForestRoad
+      objectReference: {fileID: 0}
+    - target: {fileID: 5860830974655488031, guid: 8c5dae4aa82bb8b4d96103e595ff17a6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 5860830974655830289, guid: 8c5dae4aa82bb8b4d96103e595ff17a6,
         type: 3}
@@ -546,6 +598,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2143284620}
     m_Modifications:
+    - target: {fileID: 7377350430163409452, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7377350430701062508, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
         type: 3}
       propertyPath: m_RootOrder
@@ -605,6 +662,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RoadBlocker
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377350430701062510, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377350430819462853, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a81b8cfcea688841a3f8414e65ad5e0, type: 3}
@@ -621,6 +688,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 745374050}
     m_Modifications:
+    - target: {fileID: 7377350430163409452, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7377350430701062508, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
         type: 3}
       propertyPath: m_RootOrder
@@ -680,6 +752,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RoadBlocker
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377350430701062510, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377350430819462853, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a81b8cfcea688841a3f8414e65ad5e0, type: 3}
@@ -870,6 +952,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 745374050}
     m_Modifications:
+    - target: {fileID: 7377350430163409452, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7377350430701062508, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
         type: 3}
       propertyPath: m_RootOrder
@@ -930,6 +1017,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadBlocker (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7377350430701062510, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377350430819462853, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a81b8cfcea688841a3f8414e65ad5e0, type: 3}
 --- !u!4 &729469055 stripped
@@ -952,7 +1049,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!4 &745374050
 Transform:
@@ -1086,6 +1183,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 745374050}
     m_Modifications:
+    - target: {fileID: 7377350430163409452, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7377350430701062508, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
         type: 3}
       propertyPath: m_RootOrder
@@ -1145,6 +1247,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RoadBlocker (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377350430701062510, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377350430819462853, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a81b8cfcea688841a3f8414e65ad5e0, type: 3}
@@ -1288,6 +1400,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 745374050}
     m_Modifications:
+    - target: {fileID: 7377350430163409452, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7377350430701062508, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
         type: 3}
       propertyPath: m_RootOrder
@@ -1347,6 +1464,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RoadBlocker
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377350430701062510, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377350430819462853, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a81b8cfcea688841a3f8414e65ad5e0, type: 3}
@@ -1506,6 +1633,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 745374050}
     m_Modifications:
+    - target: {fileID: 7377350430163409452, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7377350430701062508, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
         type: 3}
       propertyPath: m_RootOrder
@@ -1565,6 +1697,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RoadBlocker
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377350430701062510, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377350430819462853, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a81b8cfcea688841a3f8414e65ad5e0, type: 3}
@@ -1637,6 +1779,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 745374050}
     m_Modifications:
+    - target: {fileID: 7377350430163409452, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7377350430701062508, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
         type: 3}
       propertyPath: m_RootOrder
@@ -1697,6 +1844,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadBlocker (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7377350430701062510, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377350430819462853, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a81b8cfcea688841a3f8414e65ad5e0, type: 3}
 --- !u!4 &1773822445 stripped
@@ -1712,6 +1869,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2143284620}
     m_Modifications:
+    - target: {fileID: 7377350430163409452, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7377350430701062508, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
         type: 3}
       propertyPath: m_RootOrder
@@ -1772,6 +1934,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadBlocker (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7377350430701062510, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377350430819462853, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a81b8cfcea688841a3f8414e65ad5e0, type: 3}
 --- !u!4 &1942665911 stripped
@@ -1817,6 +1989,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2143284620}
     m_Modifications:
+    - target: {fileID: 7377350430163409452, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7377350430701062508, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
         type: 3}
       propertyPath: m_RootOrder
@@ -1877,6 +2054,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadBlocker
       objectReference: {fileID: 0}
+    - target: {fileID: 7377350430701062510, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377350430819462853, guid: 8a81b8cfcea688841a3f8414e65ad5e0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a81b8cfcea688841a3f8414e65ad5e0, type: 3}
 --- !u!4 &2093073507 stripped
@@ -1899,7 +2086,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!4 &2143284620
 Transform:
