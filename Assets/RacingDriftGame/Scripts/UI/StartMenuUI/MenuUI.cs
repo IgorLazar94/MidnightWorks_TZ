@@ -16,6 +16,7 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
 {
     public class MenuUI : MonoBehaviour
     {
+        public static Action OnUpdateCarShopPrices;
         [SerializeField] private RectTransform iAP, carShop, customization, settings, levels, currencyExchange;
         private RectTransform lastOpenPanel;
         private List<MenuNavigationButton> menuNavigationButtons;
@@ -23,6 +24,7 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
         private void Start()
         {
             menuNavigationButtons = GetComponentsInChildren<MenuNavigationButton>().ToList();
+            lastOpenPanel = carShop;
             foreach (var button in menuNavigationButtons)
             {
                 button.SetMainUI(this);
@@ -43,6 +45,7 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
                     break;
                 case TypeOfPanel.CarShop:
                     carShop.gameObject.SetActive(true);
+                    OnUpdateCarShopPrices.Invoke();
                     lastOpenPanel = carShop;
                     break;
                 case TypeOfPanel.Customization:

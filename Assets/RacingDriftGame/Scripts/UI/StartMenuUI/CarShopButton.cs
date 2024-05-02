@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using RacingDriftGame.Scripts.Car;
 using RacingDriftGame.Scripts.Collections;
@@ -43,6 +44,16 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
         private bool isBoughtYellowCar;
         private bool isBoughtGreyCar;
         private bool isBoughtVioletCar;
+
+        private void OnEnable()
+        {
+            MenuUI.OnUpdateCarShopPrices += UpdatePrice;
+        }
+
+        private void OnDisable()
+        {
+            MenuUI.OnUpdateCarShopPrices -= UpdatePrice;
+        }
 
         private void Start()
         {
