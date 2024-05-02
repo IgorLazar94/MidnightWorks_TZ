@@ -5,6 +5,7 @@ using RacingDriftGame.Scripts.DataPersistenceSystem.Data;
 using UnityEngine.EventSystems;
 using System;
 using RacingDriftGame.Scripts.Collections;
+using RacingDriftGame.Scripts.UI.StartMenuUI;
 
 namespace RacingDriftGame.Scripts.Car
 {
@@ -12,11 +13,12 @@ namespace RacingDriftGame.Scripts.Car
     {
         [SerializeField] private MeshRenderer carMesh;
         [SerializeField] private TextureCollection textureCollection;
+        [SerializeField] private GameObject spoilerObject;
         private float rotationDuration = 30f;
         private int rotationDirection = -1;
         private Tween rotationTween;
-        private IDataPersistence _dataPersistenceImplementation;
         private int saveTextureEnumValue;
+        private bool isActivateSpoiler;
 
         private void Start()
         {
@@ -99,14 +101,23 @@ namespace RacingDriftGame.Scripts.Car
             throw new ArgumentException("Invalid integer value for TypeOfCarButton");
         }
 
+        public void ActivateSwitchSpoiler()
+        {
+            isActivateSpoiler = !isActivateSpoiler;
+            spoilerObject.SetActive(isActivateSpoiler);
+            DataPersistenceManager.Instance.SaveGame();
+        }
+
         public void LoadData(GameData gameData)
         {
             saveTextureEnumValue = gameData.carTextureEnumNumber;
+            isActivateSpoiler = gameData.isCarHasSpoiler;
         }
 
         public void SaveData(ref GameData gameData)
         {
             gameData.carTextureEnumNumber = saveTextureEnumValue;
+            gameData.isCarHasSpoiler = isActivateSpoiler;
         }
     }
 }

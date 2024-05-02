@@ -8,23 +8,23 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum TypeOfCarButton
-{
-    Yellow,
-    Blue,
-    Red,
-    Grey,
-    Violet
-}
-
-public enum TypeOfPayment
-{
-    Dollars,
-    Gold
-}
-
 namespace RacingDriftGame.Scripts.UI.StartMenuUI
 {
+    public enum TypeOfCarButton
+    {
+        Yellow,
+        Blue,
+        Red,
+        Grey,
+        Violet
+    }
+
+    public enum TypeOfPayment
+    {
+        Dollars,
+        Gold
+    }
+
     public class CarShopButton : MonoBehaviour, IDataPersistence
     {
         [SerializeField] private MenuCarConstructor carConstructor;

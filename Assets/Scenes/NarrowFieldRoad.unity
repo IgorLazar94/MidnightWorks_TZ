@@ -2133,22 +2133,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5177796394381711997, guid: 133308cdb8794744caaef026bde9e1f0,
         type: 3}
-      propertyPath: carMesh
-      value: 
-      objectReference: {fileID: 5177796394381711996}
-    - target: {fileID: 5177796394381711997, guid: 133308cdb8794744caaef026bde9e1f0,
-        type: 3}
       propertyPath: textureCollection
       value: 
       objectReference: {fileID: 1599172231}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 133308cdb8794744caaef026bde9e1f0, type: 3}
---- !u!23 &5177796394381711996 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 187330664660230373, guid: 133308cdb8794744caaef026bde9e1f0,
-    type: 3}
-  m_PrefabInstance: {fileID: 5177796394381711995}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8177553835265091091
 PrefabInstance:
   m_ObjectHideFlags: 0

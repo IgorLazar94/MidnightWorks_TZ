@@ -12,6 +12,8 @@ namespace RacingDriftGame.Scripts.DataPersistenceSystem.Data
         public bool isBoughtGreyCar;
         public bool isBoughtVioletCar;
         public int carTextureEnumNumber;
+        public bool isSpoilerBought;
+        public bool isCarHasSpoiler;
 
         public GameData()
         {
@@ -25,6 +27,8 @@ namespace RacingDriftGame.Scripts.DataPersistenceSystem.Data
             isBoughtGreyCar = false;
             isBoughtVioletCar = false;
             carTextureEnumNumber = 0;
+            isSpoilerBought = false;
+            isCarHasSpoiler = false;
         }
     }
 }

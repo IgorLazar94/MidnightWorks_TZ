@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public enum TypeOfPanel
-{
-    IAP,
-    CarShop,
-    Customization,
-    Settings,
-    Levels,
-    CurrencyExchange
-}
 namespace RacingDriftGame.Scripts.UI.StartMenuUI
 {
+    public enum TypeOfPanel
+    {
+        IAP,
+        CarShop,
+        Customization,
+        Settings,
+        Levels,
+        CurrencyExchange
+    }
+
     public class MenuUI : MonoBehaviour
     {
         public static Action OnUpdateCarShopPrices;
@@ -50,6 +51,7 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
                     break;
                 case TypeOfPanel.Customization:
                     customization.gameObject.SetActive(true);
+                    CustomizationButton.OnUpdateCustomizationButtons.Invoke();
                     lastOpenPanel = customization;
                     break;
                 case TypeOfPanel.Settings:
