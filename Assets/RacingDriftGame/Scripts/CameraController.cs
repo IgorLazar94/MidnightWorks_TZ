@@ -10,7 +10,7 @@ namespace RacingDriftGame.Scripts
         [SerializeField] private Transform player;
         private Rigidbody playerRB;
         private Vector3 cameraOffset = new (0,2,0);
-        private float cameraSpeed = 4f;
+        private float cameraSpeed = 6f;
         
 
         private void Start()

@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace RacingDriftGame.Scripts.Photon
 {
-    public class SpawnMultiplayerPlayers : MonoBehaviour
+    public class SpawnMultiplayerPlayers : MonoBehaviourPunCallbacks
     {
         public static Action OnStartTheGame;
         [SerializeField] private CarController playerPrefab;
@@ -27,16 +27,23 @@ namespace RacingDriftGame.Scripts.Photon
             
             int spawnIndex = GetSpawnIndex();
             var playerSpawnPoint = playerSpawnPoints[spawnIndex];
-            
             var player = PhotonNetwork.Instantiate(playerPrefab.name, playerSpawnPoint.position, Quaternion.identity);
             FindCameraAndSetPlayer(player.transform);
-
             var carController = player.GetComponent<CarController>();
             scoresDriftManager.SetPlayer(carController);
             carController.SetHUDButtonsLinks(gasButton, brakeButton, turnLeftButton, turnRightButton);
             player.GetComponent<CarView>().SetTextureLink(textureCollection);
             if (PhotonNetwork.CurrentRoom.Players.Count >= 2)
             {
+                PrepareStartGame();
+            }
+        }
+        
+        public override void OnPlayerEnteredRoom(Player newPlayer)
+        {
+            if (PhotonNetwork.CurrentRoom.Players.Count >= 2)
+            {
+                    photonView.RPC(nameof(PrepareStartGame), RpcTarget.All, timeToStart);
                 StartCoroutine(StartTheGame(timeToStart));
                 scoresDriftManager.StartCountingToTheStart(timeToStart);
             }
@@ -62,13 +69,18 @@ namespace RacingDriftGame.Scripts.Photon
             Time.timeScale = 1;
         }
 
+        private void PrepareStartGame()
+        {
+            StartCoroutine(StartTheGame(timeToStart));
+            scoresDriftManager.StartCountingToTheStart(timeToStart);
+        }
+
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                StartCoroutine(StartTheGame(timeToStart));
-                scoresDriftManager.StartCountingToTheStart(timeToStart);
+                PrepareStartGame();
             }
         }
     }

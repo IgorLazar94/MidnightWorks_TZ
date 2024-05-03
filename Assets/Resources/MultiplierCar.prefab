@@ -960,6 +960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70aa705ec3d44df44bccf40eccb9b890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  typeOfGame: 1
   carMesh: {fileID: 6549938063718061999}
   textureCollection: {fileID: 0}
   spoilerObject: {fileID: 5518539615552779108}

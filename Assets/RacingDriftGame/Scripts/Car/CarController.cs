@@ -26,7 +26,7 @@ namespace RacingDriftGame.Scripts.Car
         private PhotonView photonView;
         private Rigidbody playerBody;
         private float speed;
-        private const float motorPower = 1500f;
+        private const float motorPower = 1000f;
         private float brakePower = 500000f;
         private float brakeInput;
         private float slipAngle;
