@@ -81,6 +81,11 @@ namespace RacingDriftGame.Scripts
             }
         }
 
+        public void FastSaveMoneyToJSON()
+        {
+            DataPersistenceManager.Instance.SaveGame();
+        }
+
         public void LoadData(GameData gameData)
         {
             playerDollars = gameData.dollars;

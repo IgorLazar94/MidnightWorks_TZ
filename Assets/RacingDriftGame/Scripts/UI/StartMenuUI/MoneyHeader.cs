@@ -10,6 +10,11 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
         [SerializeField] private TextMeshProUGUI playerDollarText;
         [SerializeField] private TextMeshProUGUI playerGoldText;
 
+        private void Start()
+        {
+            OnUpdateMoneyText.Invoke(MoneyManager.Instance.PlayerDollars, MoneyManager.Instance.PlayerGold);
+        }
+
         private void OnEnable()
         {
             OnUpdateMoneyText += UpdateMoneyText;

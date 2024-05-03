@@ -2258,6 +2258,11 @@ PrefabInstance:
       propertyPath: turnRightButton
       value: 
       objectReference: {fileID: 1580255415}
+    - target: {fileID: 2716459193614891142, guid: 133308cdb8794744caaef026bde9e1f0,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_Stiffness
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2792218741957914664, guid: 133308cdb8794744caaef026bde9e1f0,
         type: 3}
       propertyPath: m_RootOrder

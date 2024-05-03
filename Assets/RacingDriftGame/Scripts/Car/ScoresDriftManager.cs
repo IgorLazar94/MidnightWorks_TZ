@@ -1,19 +1,26 @@
-using System;
 using System.Collections;
+using System.Globalization;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
+using DG.Tweening;
+using RacingDriftGame.Scripts.Collections;
+using UnityEngine.SceneManagement;
 
 namespace RacingDriftGame.Scripts.Car
 {
     public class ScoresDriftManager : MonoBehaviour
     {
         [SerializeField] private CarController player;
-        [SerializeField] private TextMeshProUGUI totalScoreText, currentScoreText, factorText, driftAngleText;
+
+        [SerializeField]
+        private TextMeshProUGUI totalScoreText, currentScoreText, factorText, driftAngleText, finishScoreText;
+
         [SerializeField] GameObject driftingPanel;
         [SerializeField] private Color normalDriftColor;
         [SerializeField] private Color nearStopColor;
         [SerializeField] private Color driftEndedColor;
+        [SerializeField] private GameObject HUDPanel, finishScorePanel;
 
         private Rigidbody playerBody;
         private float speed = 0;
@@ -26,6 +33,7 @@ namespace RacingDriftGame.Scripts.Car
         private float driftingDelay = 0.2f;
         private bool isDrifting = false;
         private IEnumerator stopDriftingCoroutine;
+        private bool finishScene = false;
 
         private void Start()
         {
@@ -51,7 +59,7 @@ namespace RacingDriftGame.Scripts.Car
 
             if (driftAngle >= minAngle && speed > minSpeed)
             {
-                if (!isDrifting || stopDriftingCoroutine != null)
+                if (!isDrifting || stopDriftingCoroutine != null && !finishScene)
                 {
                     StartDrift();
                 }
@@ -118,9 +126,34 @@ namespace RacingDriftGame.Scripts.Car
         }
 
         public void CalculateTotalScoreInMoney()
-        { 
+        {
+            finishScene = true;
+
+            if (stopDriftingCoroutine != null)
+            {
+                StopCoroutine(stopDriftingCoroutine);
+                stopDriftingCoroutine = null;
+            }
+
             var addMoney = Mathf.RoundToInt(totalScore / 100);
             MoneyManager.Instance.PlayerDollars += addMoney;
+            MoneyManager.Instance.FastSaveMoneyToJSON();
+
+            float x = 0;
+            finishScorePanel.SetActive(true);
+
+            DOTween.To(() => x, newValue =>
+            {
+                x = newValue;
+                finishScoreText.text = Mathf.RoundToInt(x).ToString();
+            }, addMoney, 4f);
+
+            DOTween.To(() => totalScore, newValue =>
+                {
+                    totalScore = newValue;
+                    totalScoreText.text = $"Total: {totalScore:###,###,000}";
+                }, 0, 4f)
+                .OnComplete(() => SceneManager.LoadScene(SceneNames.GarageMenuScene));
         }
     }
 }
