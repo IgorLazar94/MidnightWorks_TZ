@@ -62,6 +62,11 @@ namespace RacingDriftGame.Scripts.Car
             }
         }
         
+        public void SetTextureLink(TextureCollection textureCollection)
+        {
+            this.textureCollection = textureCollection;
+        }
+        
         public void LoadData(GameData gameData)
         {
             saveTextureEnumValue = gameData.carTextureEnumNumber;

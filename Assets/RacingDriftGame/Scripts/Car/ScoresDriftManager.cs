@@ -11,6 +11,7 @@ namespace RacingDriftGame.Scripts.Car
 {
     public class ScoresDriftManager : MonoBehaviour
     {
+        [SerializeField] private TypeOfGame typeOfGame;
         [SerializeField] private CarController player;
 
         [SerializeField]
@@ -38,13 +39,22 @@ namespace RacingDriftGame.Scripts.Car
         private void Start()
         {
             driftingPanel.SetActive(false);
-            playerBody = player.GetComponent<Rigidbody>();
+            if (typeOfGame == TypeOfGame.Single)
+            {
+                playerBody = player.GetComponent<Rigidbody>();
+            }
         }
 
         private void Update()
         {
             ManageDrift();
             ManageUI();
+        }
+
+        public void SetPlayer(CarController player)
+        {
+            this.player = player;
+            playerBody = this.player.GetComponent<Rigidbody>();
         }
 
         private void ManageDrift()

@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using RacingDriftGame.Scripts.Collections;
+using RacingDriftGame.Scripts.Photon;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace RacingDriftGame.Scripts.UI.StartMenuUI
 {
@@ -19,6 +22,7 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
     {
         public static Action OnUpdateCarShopPrices;
         [SerializeField] private RectTransform iAP, carShop, customization, settings, levels, currencyExchange;
+        [SerializeField] private ConnectToServer connectToServer;
         private RectTransform lastOpenPanel;
         private List<MenuNavigationButton> menuNavigationButtons;
 
@@ -67,6 +71,11 @@ namespace RacingDriftGame.Scripts.UI.StartMenuUI
                     lastOpenPanel = currencyExchange;
                     break;
             }
+        }
+
+        public void MoveToLobby()
+        {
+            connectToServer.gameObject.SetActive(true);
         }
     }
 }

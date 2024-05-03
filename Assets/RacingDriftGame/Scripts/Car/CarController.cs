@@ -1,12 +1,20 @@
 using System;
+using RacingDriftGame.Scripts.Collections;
 using RacingDriftGame.Scripts.UI;
 using RacingDriftGame.Scripts.UI.GameplayUI;
 using UnityEngine;
+using Photon.Pun;
 
+public enum TypeOfGame
+{
+    Single,
+    Multiplier
+}
 namespace RacingDriftGame.Scripts.Car
 {
     public class CarController : MonoBehaviour
     {
+        [SerializeField] private TypeOfGame typeOfGame;
         [SerializeField] private WheelColliders wheelColliders;
         [SerializeField] private WheelMeshes wheelMeshes;
         [SerializeField] private WheelParticles wheelParticles;
@@ -14,6 +22,7 @@ namespace RacingDriftGame.Scripts.Car
         [SerializeField] private GameObject smokePrefab;
         [SerializeField] private Transform newCenterOfMassTransform;
         [SerializeField] private HUDButton gasButton, brakeButton, turnLeftButton, turnRightButton;
+        private PhotonView photonView;
         private Rigidbody playerBody;
         private float speed;
         private const float motorPower = 1500f;
@@ -33,11 +42,25 @@ namespace RacingDriftGame.Scripts.Car
             playerBody = GetComponent<Rigidbody>();
             SetNewCenterOfMass();
             InstAllSmokeTrailParticles();
+            if (typeOfGame == TypeOfGame.Multiplier)
+            {
+                photonView = GetComponent<PhotonView>();
+            }
         }
 
         private void Update()
         {
-            CheckInput();
+            if (typeOfGame == TypeOfGame.Single)
+            {
+                CheckInput();
+            }
+            else if (typeOfGame == TypeOfGame.Multiplier)
+            {
+                if (photonView.IsMine)
+                {
+                    CheckInput();
+                }
+            }
         }
 
         private void FixedUpdate()
@@ -230,6 +253,14 @@ namespace RacingDriftGame.Scripts.Car
             wheelCollider.GetWorldPose(out var position, out var quaternion);
             wheelTransform.position = position;
             wheelTransform.rotation = quaternion;
+        }
+
+        public void SetHUDButtonsLinks(HUDButton gasButton, HUDButton brakeButton, HUDButton turnLeftButton, HUDButton turnRightButton)
+        {
+            this.gasButton = gasButton;
+            this.brakeButton = brakeButton;
+            this.turnLeftButton = turnLeftButton;
+            this.turnRightButton = turnRightButton;
         }
     }
 }

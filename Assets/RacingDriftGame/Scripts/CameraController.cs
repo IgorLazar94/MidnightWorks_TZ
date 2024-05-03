@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using RacingDriftGame.Scripts.Car;
 using UnityEngine;
 
 namespace RacingDriftGame.Scripts
@@ -13,16 +15,29 @@ namespace RacingDriftGame.Scripts
 
         private void Start()
         {
-            playerRB = player.GetComponent<Rigidbody>();
+            Invoke(nameof(GetPlayerBody), 0.3f);
         }
 
         private void LateUpdate()
         {
-            Vector3 playerForward = (playerRB.velocity + player.transform.forward).normalized;
-            transform.position = Vector3.Lerp(transform.position,
-                player.position + player.transform.TransformVector(cameraOffset) + playerForward * (-5f),
-                cameraSpeed * Time.deltaTime);
-            transform.LookAt(player);
+            if (playerRB != null)
+            {
+                Vector3 playerForward = (playerRB.velocity + player.transform.forward).normalized;
+                transform.position = Vector3.Lerp(transform.position,
+                    player.position + player.transform.TransformVector(cameraOffset) + playerForward * (-5f),
+                    cameraSpeed * Time.deltaTime);
+                transform.LookAt(player);
+            }
+        }
+
+        private void GetPlayerBody()
+        {
+            playerRB = player.GetComponent<Rigidbody>();
+        }
+
+        public void SetPlayer(Transform player)
+        {
+            this.player = player;
         }
     }
 }
