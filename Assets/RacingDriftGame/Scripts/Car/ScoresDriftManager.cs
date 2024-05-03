@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -5,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using DG.Tweening;
 using RacingDriftGame.Scripts.Collections;
+using RacingDriftGame.Scripts.Photon;
 using UnityEngine.SceneManagement;
 
 namespace RacingDriftGame.Scripts.Car
@@ -13,15 +15,14 @@ namespace RacingDriftGame.Scripts.Car
     {
         [SerializeField] private TypeOfGame typeOfGame;
         [SerializeField] private CarController player;
-
-        [SerializeField]
-        private TextMeshProUGUI totalScoreText, currentScoreText, factorText, driftAngleText, finishScoreText;
-
+        [SerializeField] private TextMeshProUGUI totalScoreText, currentScoreText, factorText, driftAngleText, finishScoreText;
+        [SerializeField] private GameObject startMultiplierPanel;
         [SerializeField] GameObject driftingPanel;
         [SerializeField] private Color normalDriftColor;
         [SerializeField] private Color nearStopColor;
         [SerializeField] private Color driftEndedColor;
         [SerializeField] private GameObject HUDPanel, finishScorePanel;
+        [SerializeField] private TextMeshProUGUI countdownTimerText;
 
         private Rigidbody playerBody;
         private float speed = 0;
@@ -36,6 +37,16 @@ namespace RacingDriftGame.Scripts.Car
         private IEnumerator stopDriftingCoroutine;
         private bool finishScene = false;
 
+        private void OnEnable()
+        {
+            SpawnMultiplayerPlayers.OnStartTheGame += DisableStartPanel;
+        }
+
+        private void OnDisable()
+        {
+            SpawnMultiplayerPlayers.OnStartTheGame -= DisableStartPanel;
+        }
+
         private void Start()
         {
             driftingPanel.SetActive(false);
@@ -49,6 +60,35 @@ namespace RacingDriftGame.Scripts.Car
         {
             ManageDrift();
             ManageUI();
+        }
+
+        public void StartCountingToTheStart(float time)
+        {
+            StartCoroutine(CountdownCoroutine(time));
+        }
+        
+        private IEnumerator CountdownCoroutine(float totalTime)
+        {
+            float iterationTime = totalTime / 3f;
+            countdownTimerText.gameObject.SetActive(true);
+
+            for (int i = 3; i > 0; i--)
+            {
+                countdownTimerText.text = i.ToString();
+                countdownTimerText.transform.localScale = Vector3.zero;
+                countdownTimerText.transform
+                    .DOScale(Vector3.one, iterationTime)
+                    .SetEase(Ease.OutBounce)
+                    .SetUpdate(true);
+                yield return new WaitForSecondsRealtime(iterationTime);
+            }
+            countdownTimerText.gameObject.SetActive(false);
+        }
+
+        private void DisableStartPanel()
+        {
+            startMultiplierPanel.SetActive(false);
+            HUDPanel.SetActive(true);
         }
 
         public void SetPlayer(CarController player)

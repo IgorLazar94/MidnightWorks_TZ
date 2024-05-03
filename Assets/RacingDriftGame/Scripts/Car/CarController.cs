@@ -4,6 +4,7 @@ using RacingDriftGame.Scripts.UI;
 using RacingDriftGame.Scripts.UI.GameplayUI;
 using UnityEngine;
 using Photon.Pun;
+using RacingDriftGame.Scripts.Photon;
 
 public enum TypeOfGame
 {
@@ -35,7 +36,17 @@ namespace RacingDriftGame.Scripts.Car
         private float driftAngle = 120f;
         private float slipAllowance = 0.5f;
         private float dampenRateCoefficient = 0.05f;
+        private bool isGameStarted;
 
+        private void OnEnable()
+        {
+            SpawnMultiplayerPlayers.OnStartTheGame += AllowMovement;
+        }
+
+        private void OnDisable()
+        {
+            SpawnMultiplayerPlayers.OnStartTheGame -= AllowMovement;
+        }
 
         private void Start()
         {
@@ -56,7 +67,7 @@ namespace RacingDriftGame.Scripts.Car
             }
             else if (typeOfGame == TypeOfGame.Multiplier)
             {
-                if (photonView.IsMine)
+                if (photonView.IsMine && isGameStarted)
                 {
                     CheckInput();
                 }
@@ -71,6 +82,11 @@ namespace RacingDriftGame.Scripts.Car
             ApplyBrake();
             CheckAllSmokeWheelParticles();
             UpdateWheelsPosAndRot();
+        }
+
+        private void AllowMovement()
+        {
+            isGameStarted = true;
         }
 
         private void SetNewCenterOfMass()

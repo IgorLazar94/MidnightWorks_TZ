@@ -9,6 +9,7 @@ namespace RacingDriftGame.Scripts.Car
 {
     public class CarView : MonoBehaviour, IDataPersistence
     {
+        [SerializeField] private TypeOfGame typeOfGame;
         [SerializeField] private MeshRenderer carMesh;
         [SerializeField] private TextureCollection textureCollection;
         [SerializeField] private GameObject spoilerObject;
@@ -17,6 +18,7 @@ namespace RacingDriftGame.Scripts.Car
 
         private void Start()
         {
+            if (typeOfGame != TypeOfGame.Single) return;
             LoadCarTexture();
             CheckActivateSpoiler();
         }
@@ -43,7 +45,7 @@ namespace RacingDriftGame.Scripts.Car
                     break;
             }
         }
-        
+
         private TypeOfCarButton IntToEnum(int intValue)
         {
             if (Enum.IsDefined(typeof(TypeOfCarButton), intValue))
@@ -61,12 +63,14 @@ namespace RacingDriftGame.Scripts.Car
                 spoilerObject.SetActive(true);
             }
         }
-        
+
         public void SetTextureLink(TextureCollection textureCollection)
         {
             this.textureCollection = textureCollection;
+            LoadCarTexture();
+            CheckActivateSpoiler();
         }
-        
+
         public void LoadData(GameData gameData)
         {
             saveTextureEnumValue = gameData.carTextureEnumNumber;
@@ -75,7 +79,6 @@ namespace RacingDriftGame.Scripts.Car
 
         public void SaveData(ref GameData gameData)
         {
-            
         }
     }
 }

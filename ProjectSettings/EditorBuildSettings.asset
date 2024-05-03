@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LobbyScene.unity
     guid: eb81291ed540dd64dbab5ea588f6461f
+  - enabled: 1
+    path: Assets/Scenes/MultiplierWideForestRoad.unity
+    guid: e7fc4097343ed4a46bd28e44491f27d8
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
       guid: 35aa4c00b7e0cfe4aa958784e99cf4ce, type: 2}
