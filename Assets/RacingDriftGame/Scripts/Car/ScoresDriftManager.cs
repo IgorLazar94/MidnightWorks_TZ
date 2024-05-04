@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Globalization;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
