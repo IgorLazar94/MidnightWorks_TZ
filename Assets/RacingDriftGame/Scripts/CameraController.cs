@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using RacingDriftGame.Scripts.Car;
 using UnityEngine;
 
@@ -7,37 +6,35 @@ namespace RacingDriftGame.Scripts
 {
     public class CameraController : MonoBehaviour
     {
+        [SerializeField] private TypeOfGame typeOfGame;
         [SerializeField] private Transform player;
         private Rigidbody playerRB;
-        private Vector3 cameraOffset = new (0,2,0);
-        private float cameraSpeed = 6f;
-        
+        private Vector3 cameraOffset = new(0, 2, -5f);
+        private Vector3 velocity = Vector3.zero;
+        private float smoothTime = 0.3f;
 
         private void Start()
         {
-            Invoke(nameof(GetPlayerBody), 0.3f);
+            if (typeOfGame == TypeOfGame.Single)
+            {
+                playerRB = player.GetComponent<Rigidbody>();
+            }
         }
 
         private void LateUpdate()
         {
             if (playerRB != null)
             {
-                Vector3 playerForward = (playerRB.velocity + player.transform.forward).normalized;
-                transform.position = Vector3.Lerp(transform.position,
-                    player.position + player.transform.TransformVector(cameraOffset) + playerForward * (-5f),
-                    cameraSpeed * Time.deltaTime);
+                Vector3 targetPosition = player.position + player.transform.TransformVector(cameraOffset);
+                transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
                 transform.LookAt(player);
             }
-        }
-
-        private void GetPlayerBody()
-        {
-            playerRB = player.GetComponent<Rigidbody>();
         }
 
         public void SetPlayer(Transform player)
         {
             this.player = player;
+            playerRB = player.GetComponent<Rigidbody>();
         }
     }
 }

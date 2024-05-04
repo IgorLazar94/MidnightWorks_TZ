@@ -18,13 +18,11 @@ namespace RacingDriftGame.Scripts.Photon
         [SerializeField] private ScoresDriftManager scoresDriftManager;
         [SerializeField] private HUDButton gasButton, brakeButton, turnLeftButton, turnRightButton;
         private float timeToStart = 3f;
-
+        private bool isStartGame = false;
         private Camera mainCamera;
 
         private void Start()
         {
-            Time.timeScale = 0;
-            
             int spawnIndex = GetSpawnIndex();
             var playerSpawnPoint = playerSpawnPoints[spawnIndex];
             var player = PhotonNetwork.Instantiate(playerPrefab.name, playerSpawnPoint.position, Quaternion.identity);
@@ -38,21 +36,20 @@ namespace RacingDriftGame.Scripts.Photon
                 PrepareStartGame();
             }
         }
-        
+
         public override void OnPlayerEnteredRoom(Player newPlayer)
         {
-            if (PhotonNetwork.CurrentRoom.Players.Count >= 2)
+            if (!isStartGame && PhotonNetwork.CurrentRoom.Players.Count >= 2)
             {
-                    photonView.RPC(nameof(PrepareStartGame), RpcTarget.All, timeToStart);
-                StartCoroutine(StartTheGame(timeToStart));
-                scoresDriftManager.StartCountingToTheStart(timeToStart);
+                isStartGame = true;
+                PrepareStartGame();
             }
         }
 
         private void FindCameraAndSetPlayer(Transform player)
         {
             mainCamera = Camera.main;
-            if (mainCamera != null) 
+            if (mainCamera != null)
                 mainCamera.GetComponent<CameraController>().SetPlayer(player);
         }
 
@@ -66,22 +63,12 @@ namespace RacingDriftGame.Scripts.Photon
         {
             yield return new WaitForSecondsRealtime(time);
             OnStartTheGame?.Invoke();
-            Time.timeScale = 1;
         }
 
         private void PrepareStartGame()
         {
             StartCoroutine(StartTheGame(timeToStart));
             scoresDriftManager.StartCountingToTheStart(timeToStart);
-        }
-
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                PrepareStartGame();
-            }
         }
     }
 }

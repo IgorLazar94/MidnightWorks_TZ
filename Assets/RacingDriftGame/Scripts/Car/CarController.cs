@@ -1,18 +1,19 @@
 using System;
+using Photon.Pun;
 using RacingDriftGame.Scripts.Collections;
+using RacingDriftGame.Scripts.Photon;
 using RacingDriftGame.Scripts.UI;
 using RacingDriftGame.Scripts.UI.GameplayUI;
 using UnityEngine;
-using Photon.Pun;
-using RacingDriftGame.Scripts.Photon;
 
-public enum TypeOfGame
-{
-    Single,
-    Multiplier
-}
 namespace RacingDriftGame.Scripts.Car
 {
+    public enum TypeOfGame
+    {
+        Single,
+        Multiplier
+    }
+
     public class CarController : MonoBehaviour
     {
         [SerializeField] private TypeOfGame typeOfGame;

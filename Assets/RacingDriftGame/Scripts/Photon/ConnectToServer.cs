@@ -15,6 +15,7 @@ namespace RacingDriftGame.Scripts.Photon
 
         public override void OnConnectedToMaster()
         {
+            PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "us";
             PhotonNetwork.JoinLobby();
         }
 
